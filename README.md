@@ -1,27 +1,101 @@
-# NgxAdDfpLib
+# Show DFP ads in your Angular X App now !
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+## How to use:
 
-## Development server
+Insert in your index.html this line to load google DFP lib:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```html
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+```
 
-## Code scaffolding
+Then install ngx-ad-dfp:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+$ npm install ngx-ad-dfp
+```
 
-## Build
+Import the module to your app : 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```ts
+import {NgxAdDfpModule} from 'ngx-ad-dfp';
 
-## Running unit tests
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    NgxAdDfpModule // Add this!
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Create a settings object with your DFP credentials like this: 
 
-## Running end-to-end tests
+```json
+{
+  "network": "yourNetworkId",
+  "ads": [{
+    "tag": "yourAdTag",
+    "id": "yourAdUnitId",
+    "mappings": [{
+      device: {
+        width: 0,
+        height: 0
+      },
+      ad: {
+        width: 320,
+        height: 50
+      }
+    },
+    {
+      device: {
+        width: 750,
+        height: 200
+      },
+      ad: {
+        width: 728,
+        height: 90
+      }
+    }]
+  }],
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+You can define multiple ads and create multiple sizes of the same ad, then show them according to user's screen size.
+To do so with this library, you should in the "mapping" array define for each mapping :
+The device minimum width and height,
+the ad's size you want to show (need to be exact)
 
-## Further help
+## Actually showing the ad:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Add in any of your component this html tag :
+
+```html
+<ad-dfp [settings]="settings" [ad]="ad"></ad-dfp>
+```
+
+Where `settings` is the json we created just before, and `ad` is one of the ads in the `ads` property of `settings`
+
+For example you could do:
+
+```html
+<ad-dfp *ngFor="let ad of settings.ads" [settings]="settings" [ad]="ad"></ad-dfp>
+```
+
+This will show all your ads one under the other
+
+You can also:
+
+```html
+<ad-dfp [settings]="settings" [ad]="settings.ads[0]"></ad-dfp>
+```
+
+This will show the first ad you defined.
+
+Check out [my example app on GitHub](https://github.com/alabordere/ngx-ad-dfp) if you need any more help :)
+
+Happy coding!
