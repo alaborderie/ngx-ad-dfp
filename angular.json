@@ -129,6 +129,41 @@
           }
         }
       }
+    },
+    "ngx-ad-dfp": {
+      "root": "projects/ngx-ad-dfp",
+      "sourceRoot": "projects/ngx-ad-dfp/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-ad-dfp/tsconfig.lib.json",
+            "project": "projects/ngx-ad-dfp/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-ad-dfp/src/test.ts",
+            "tsConfig": "projects/ngx-ad-dfp/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-ad-dfp/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-ad-dfp/tsconfig.lib.json",
+              "projects/ngx-ad-dfp/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-ad-dfp-lib"

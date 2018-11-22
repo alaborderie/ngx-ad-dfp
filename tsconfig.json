@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-ad-dfp": [
+        "dist/ngx-ad-dfp"
+      ],
+      "ngx-ad-dfp/*": [
+        "dist/ngx-ad-dfp/*"
+      ]
+    }
   }
 }
