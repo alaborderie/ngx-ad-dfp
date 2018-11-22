@@ -42,23 +42,23 @@ Create a settings object with your DFP credentials like this:
     "tag": "yourAdTag",
     "id": "yourAdUnitId",
     "mappings": [{
-      device: {
-        width: 0,
-        height: 0
+      "device": {
+        "width": 0,
+        "height": 0
       },
-      ad: {
-        width: 320,
-        height: 50
+      "ad": {
+        "width": 320,
+        "height": 50
       }
     },
     {
-      device: {
-        width: 750,
-        height: 200
+      "device": {
+        "width": 750,
+        "height": 200
       },
-      ad: {
-        width: 728,
-        height: 90
+      "ad": {
+        "width": 728,
+        "height": 90
       }
     }]
   }],
